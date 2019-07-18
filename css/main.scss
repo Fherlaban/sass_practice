@@ -1,10 +1,17 @@
 $colors: ( primary: rgb(14, 102, 255), accent: rgb(103, 231, 171));
 $padding: 15px;
 $borders: 15px;
+$desktop: 840px;
 @import url('https://fonts.googleapis.com/css?family=Montserrat&display=swap');
 @function color($color-name) {
     @return map-get($colors,
     $color-name)
+}
+
+@mixin desktop {
+    @media (min-width: #{$desktop}) {
+        @content;
+    }
 }
 
 body,
@@ -23,6 +30,9 @@ body {
         height: 100%;
         position: absolute;
         z-index: -1;
+        @include desktop {
+            clip-path: polygon(0 0, 80% 0, 60% 100%, 0 100%);
+        }
     }
     header a {
         color: #fff;
